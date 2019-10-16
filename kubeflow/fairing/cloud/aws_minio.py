@@ -11,17 +11,10 @@ logger = logging.getLogger(__name__)
 class S3UploaderMinio(object):
     def __init__(self, region):
         self.region = region
-        self.storage_client = boto3.client('s3',
-            aws_secret_access_key='minio123',
-            aws_access_key_id='minio',
-            endpoint_url='http://minio-service:9000',
-            config=boto3.session.Config(signature_version='s3v4'))
-
-#        self.storage_client = boto3.client('s3',
-#            aws_secret_access_key='ufj9SpyvChwS/ua3k1tfPAhbIfrMs5rfC2n1Y0Gu',
-#            aws_access_key_id='ecs',
-#            endpoint_url='http://192.168.67.251',
-#            config=boto3.session.Config(signature_version='s3v4'))
+        self.storage_client = boto3.client('s3', region_name=region,
+            endpoint_url='http://192.168.67.251:9020',
+            verify=False,
+            config=boto3.session.Config(signature_version='s3', s3={'addressing_style': 'path'}))
 
     def upload_to_bucket(self,
                          blob_name,

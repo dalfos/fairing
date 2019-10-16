@@ -48,7 +48,7 @@ class S3ContextSource_minio(ContextSourceInterface):
                                            env=[client.V1EnvVar(name='AWS_REGION',
                                                                 value=self.region),
                                                 client.V1EnvVar(name='S3_ENDPOINT',
-                                                                value='http://minio-service:9000'),
+                                                                value='http://192.168.67.251:9020'),
                                                 client.V1EnvVar(name='S3_FORCE_PATH_STYLE',
                                                                 value='true')]
                                            )],
